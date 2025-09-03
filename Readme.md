@@ -20,6 +20,4 @@ This is a 10-part code-along project to build a console-based **School Attendanc
 2. Compile the source files using javac command
 ```bash
 javac *.java
-```
-3. Run the compiled class file using java command
-java Main
+
