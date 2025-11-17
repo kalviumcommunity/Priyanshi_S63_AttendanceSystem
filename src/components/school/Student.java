@@ -26,7 +26,7 @@ public class Student extends Person implements Storable { // Extends Person
         return getId();
     }
 
-    @Override // Good practice to indicate overriding
+    @Override
     public void displayDetails() {
         System.out.println("Student ID: " + getId() + ", Name: " + getName());
         // Only show grade level if it's not the default
