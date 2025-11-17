@@ -1,37 +1,44 @@
 package components.school;
 
-public class AttendanceRecord {
-    private int studentId;
-    private int courseId;
-    private String status; // e.g., "Present", "Absent"
+/**
+ * A simple representation of an attendance record.
+ * Stored as CSV by FileStorageService where needed.
+ */
+public class AttendanceRecord implements Storable {
+    private final String studentId;
+    private final String date; // use yyyy-mm-dd
+    private final boolean present;
 
-    public AttendanceRecord(int studentId, int courseId, String status) {
+    public AttendanceRecord(String studentId, String date, boolean present) {
         this.studentId = studentId;
-        this.courseId = courseId;
-        // Basic validation for status
-        if ("Present".equalsIgnoreCase(status) || "Absent".equalsIgnoreCase(status)) {
-            this.status = status;
-        } else {
-            this.status = "Invalid"; // Default for invalid input
-            System.out.println("Warning: Invalid attendance status provided. Set to 'Invalid'.");
-        }
+        this.date = date;
+        this.present = present;
     }
 
-    // Getters
-    public int getStudentId() { 
-        return studentId; 
+    public String getStudentId() {
+        return studentId;
     }
 
-    public int getCourseId() { 
-        return courseId; 
+    public String getDate() {
+        return date;
     }
 
-    public String getStatus() { 
-        return status; 
+    public boolean isPresent() {
+        return present;
     }
 
-    public void displayRecord() {
-        System.out.println("Attendance: Student ID " + studentId +
-                           " in Course ID C" + courseId + " - Status: " + status);
+    @Override
+    public String toDataString() {
+        // CSV: studentId,date,present
+        return String.join(",", studentId, date, Boolean.toString(present));
+    }
+
+    public static AttendanceRecord fromDataString(String line) {
+        if (line == null || line.trim().isEmpty()) return null;
+        String[] parts = line.split(",", -1);
+        String sid = parts.length > 0 ? parts[0] : "";
+        String date = parts.length > 1 ? parts[1] : "";
+        boolean present = parts.length > 2 && Boolean.parseBoolean(parts[2]);
+        return new AttendanceRecord(sid, date, present);
     }
 }
