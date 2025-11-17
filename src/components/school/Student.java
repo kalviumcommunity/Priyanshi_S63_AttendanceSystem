@@ -1,28 +1,26 @@
-package components.school;
+public class Student extends Person implements Storable { // Extends Person
 
-public class Student {
-    private static int nextStudentIdCounter = 1;
+    private String gradeLevel; // Example new specific field
 
-    private int studentId;    // Made private
-    private String name;      // Made private
-
-    // Constructor
-    public Student(String name) {
-        this.studentId = nextStudentIdCounter++; // Auto-increment and assign ID
-        this.name = name;                      // Assign name
+    public Student(String name, String gradeLevel) {
+        super(name); // Calls Person constructor
+        this.gradeLevel = gradeLevel;
     }
 
-    // Getter for studentId
-    public int getStudentId() {
-        return studentId;
+    // Getter for gradeLevel (optional for now, focus on display)
+    public String getGradeLevel() {
+        return gradeLevel;
     }
 
-    // Getter for name
-    public String getName() {
-        return name;
-    }
-
+    @Override // Good practice to indicate overriding
     public void displayDetails() {
-        System.out.println("Student ID: " + this.studentId + ", Name: " + this.name);
+        super.displayDetails(); // Call Person's displayDetails
+        System.out.println(", Grade Level: " + gradeLevel + " (Role: Student)");
+    }
+
+    @Override
+    public String toDataString() {
+        // Format: id,name,gradeLevel
+        return getId() + "," + getName() + "," + gradeLevel;
     }
 }

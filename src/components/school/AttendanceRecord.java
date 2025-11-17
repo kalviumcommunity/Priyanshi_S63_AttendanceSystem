@@ -1,4 +1,4 @@
-package com.school;
+package components.school;
 
 public class AttendanceRecord {
     private int studentId;
