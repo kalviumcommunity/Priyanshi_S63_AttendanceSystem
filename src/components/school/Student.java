@@ -1,28 +1,52 @@
 package components.school;
 
-public class Student {
-    private static int nextStudentIdCounter = 1;
+public class Student extends Person implements Storable {
 
-    private int studentId;    // Made private
-    private String name;      // Made private
+    private String gradeLevel;
 
-    // Constructor
+    // Constructor compatible with existing code (default grade level)
     public Student(String name) {
-        this.studentId = nextStudentIdCounter++; // Auto-increment and assign ID
-        this.name = name;                      // Assign name
+        this(name, "Not Specified");
     }
 
-    // Getter for studentId
+    // Constructor with grade level
+    public Student(String name, String gradeLevel) {
+        super(name);
+        this.gradeLevel = gradeLevel;
+    }
+
+    // Getter for gradeLevel
+    public String getGradeLevel() {
+        return gradeLevel;
+    }
+
+    // Compatibility method for Setup code
     public int getStudentId() {
-        return studentId;
+        return getId();
     }
 
-    // Getter for name
-    public String getName() {
-        return name;
-    }
-
+    @Override
     public void displayDetails() {
-        System.out.println("Student ID: " + this.studentId + ", Name: " + this.name);
+        System.out.print("Student ID: " + getId() + ", Name: " + getName());
+        if (!"Not Specified".equals(gradeLevel)) {
+            System.out.print(", Grade Level: " + gradeLevel);
+        }
+        System.out.println();
+    }
+
+    @Override
+    public String toDataString() {
+        return getId() + "," + getName() + "," + gradeLevel;
+    }
+
+    // Static method to create Student from data string
+    public static Student fromDataString(String data) {
+        String[] parts = data.split(",");
+        if (parts.length >= 2) {
+            String name = parts[1];
+            String gradeLevel = parts.length > 2 ? parts[2] : "Not Specified";
+            return new Student(name, gradeLevel);
+        }
+        throw new IllegalArgumentException("Invalid student data: " + data);
     }
 }
