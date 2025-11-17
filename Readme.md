@@ -10,8 +10,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory (`AttendanceSystem`).
-2. Compile: `javac src/com/school/Main.java`
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/Main.java`
+3. Run: `java -cp src components.school.Main`
 
 4. ## Session 2: Core Domain Modelling
 - Defined `Student` class with `studentId`, `name`, `setDetails()`, and `displayDetails()` method.
@@ -21,8 +21,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/Student.java src/com/school/Course.java src/com/school/Main.java` (or `javac src/com/school/*.java`)
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/Student.java src/components/school/Course.java src/components/school/Main.java` (or `javac src/components/school/*.java`)
+3. Run: `java -cp src components.school.Main`
 
 ## Part 3: Constructor Initialization & Auto-ID Generation
 - Implemented parameterized constructors in `Student` and `Course` classes for object initialization.
@@ -33,8 +33,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run (ensure this is up-to-date)
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/Student.java src/com/school/Course.java src/com/school/Main.java` (or `javac src/com/school/*.java`)
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/Student.java src/components/school/Course.java src/components/school/Main.java` (or `javac src/components/school/*.java`)
+3. Run: `java -cp src components.school.Main`
 
 ## Part 4: Data Encapsulation & Attendance Recording Validation
 - Applied encapsulation to `Student` and `Course` classes by making fields `private` and adding public `getters`.
@@ -45,8 +45,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/*.java` (or list individual files including `AttendanceRecord.java`)
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/*.java` (or list individual files including `AttendanceRecord.java`)
+3. Run: `java -cp src components.school.Main`
 
 ## Part 5: Establishing Students, Teaching & Non-Teaching Staff hierarchy
 - Created a base class `Person.java` with common attributes (`id`, `name`), a universal auto-ID generator, and a `displayDetails()` method.
@@ -58,8 +58,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/*.java`
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/*.java`
+3. Run: `java -cp src components.school.Main`
 
 ## Part 6: Interface-Driven Persistence with Storage
 - Defined a `Storable` interface with a `toDataString()` method.
@@ -71,8 +71,8 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/*.java`
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/*.java`
+3. Run: `java -cp src components.school.Main`
 4. Check the generated files: `students.txt`, `courses.txt`, `attendance_log.txt`.
 
 ## Part 7: Polymorphic Behaviour in Attendance and Displaying Reports
@@ -84,5 +84,5 @@ This is a 10-part code-along project to build a console-based school attendance 
 
 ### How to Run
 1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/*.java`
-3. Run: `java -cp src com.school.Main`
+2. Compile: `javac src/components/school/*.java`
+3. Run: `java -cp src components.school.Main`

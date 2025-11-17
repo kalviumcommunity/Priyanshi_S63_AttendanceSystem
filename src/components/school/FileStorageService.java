@@ -23,8 +23,4 @@ public class FileStorageService {
     // Loading data is more complex and will be discussed or tackled later.
     // For example, a loadStudents(String filename) method would read lines,
     // parse them, and create Student objects. This requires knowing the type.
-}
-public class FileStorageService {
-
-    
 } 
