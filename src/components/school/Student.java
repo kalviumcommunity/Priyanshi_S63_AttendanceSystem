@@ -1,28 +1,43 @@
 package components.school;
 
-public class Student {
-    private static int nextStudentIdCounter = 1;
+public class Student extends Person implements Storable { // Extends Person
 
-    private int studentId;    // Made private
-    private String name;      // Made private
+    private String gradeLevel; // Student-specific field
 
-    // Constructor
+    // Constructor compatible with existing code (no gradeLevel)
     public Student(String name) {
-        this.studentId = nextStudentIdCounter++; // Auto-increment and assign ID
-        this.name = name;                      // Assign name
+        super(name); // Calls Person constructor
+        this.gradeLevel = "N/A"; // Default grade level
     }
 
-    // Getter for studentId
+    // Constructor with gradeLevel
+    public Student(String name, String gradeLevel) {
+        super(name); // Calls Person constructor
+        this.gradeLevel = gradeLevel;
+    }
+
+    // Getter for gradeLevel
+    public String getGradeLevel() {
+        return gradeLevel;
+    }
+
+    // For backward compatibility with code expecting getStudentId()
     public int getStudentId() {
-        return studentId;
+        return getId();
     }
 
-    // Getter for name
-    public String getName() {
-        return name;
-    }
-
+    @Override
     public void displayDetails() {
-        System.out.println("Student ID: " + this.studentId + ", Name: " + this.name);
+        System.out.println("Student ID: " + getId() + ", Name: " + getName());
+        // Only show grade level if it's not the default
+        if (!gradeLevel.equals("N/A")) {
+            System.out.println(", Grade Level: " + gradeLevel + " (Role: Student)");
+        }
+    }
+
+    @Override
+    public String toDataString() {
+        // Format: id,name,gradeLevel
+        return getId() + "," + getName() + "," + gradeLevel;
     }
 }
