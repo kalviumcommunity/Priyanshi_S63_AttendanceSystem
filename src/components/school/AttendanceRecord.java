@@ -1,4 +1,4 @@
-package com.school;
+package components.school;
 
 public class AttendanceRecord implements Storable {
     private Student student; // Changed from studentId to Student object
@@ -31,5 +31,15 @@ public class AttendanceRecord implements Storable {
     public String toDataString() {
         // Save IDs for simplicity in file storage
         return student.getId() + "," + course.getCourseId() + "," + status;
+    }
+
+    // Static method to create AttendanceRecord from data string (requires student and course lookups)
+    public static AttendanceRecord fromDataString(String data, Student student, Course course) {
+        String[] parts = data.split(",");
+        if (parts.length >= 3) {
+            String status = parts[2];
+            return new AttendanceRecord(student, course, status);
+        }
+        throw new IllegalArgumentException("Invalid attendance record data: " + data);
     }
 }
