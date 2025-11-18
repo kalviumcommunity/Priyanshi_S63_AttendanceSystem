@@ -1,26 +1,17 @@
 package components.school;
 
-import java.util.UUID;
+public class Person {
+    private static int nextIdCounter = 1; // Universal ID counter
 
-public abstract class Person {
-    protected final String id;
+    protected int id; // Changed to protected for derived class access if needed, or keep private and use super()
     protected String name;
 
     public Person(String name) {
-        this.id = generateId();
+        this.id = nextIdCounter++;
         this.name = name;
     }
 
-    public Person(String id, String name) {
-        this.id = (id == null || id.isEmpty()) ? generateId() : id;
-        this.name = name;
-    }
-
-    private String generateId() {
-        return UUID.randomUUID().toString();
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -28,11 +19,8 @@ public abstract class Person {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String displayDetails() {
-        return String.format("ID: %s, Name: %s", id, name);
+    public void displayDetails() {
+        System.out.print("ID: " + id + ", Name: " + name);
+        // Subclasses will add more details
     }
 }

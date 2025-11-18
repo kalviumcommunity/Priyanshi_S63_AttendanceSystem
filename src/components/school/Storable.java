@@ -1,9 +1,7 @@
 package components.school;
 
 public interface Storable {
-    /**
-     * Convert the object to a single-line CSV-friendly string used by FileStorageService.
-     * Implementations should not contain newline characters.
-     */
-    String toDataString();
+    String toDataString(); // To convert object data to a savable string format
+    // A static fromDataString would be ideal but complicates pre-Java 8.
+    // We'll handle parsing in constructors or dedicated static methods in implementing classes for now.
 }

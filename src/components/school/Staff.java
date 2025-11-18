@@ -1,28 +1,21 @@
 package components.school;
 
 public class Staff extends Person {
-    private String role;
+    private String role; // e.g., "Librarian", "Administrator"
 
     public Staff(String name, String role) {
-        super(name);
+        super(name); // Calls Person constructor
         this.role = role;
     }
 
-    public Staff(String id, String name, String role) {
-        super(id, name);
-        this.role = role;
-    }
-
+    // Getter for role (optional for now)
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
-    public String displayDetails() {
-        return String.format("Staff - %s, Role: %s", super.displayDetails(), role);
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println(", Role: " + role + " (Role: Non-Teaching Staff)");
     }
 }

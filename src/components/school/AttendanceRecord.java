@@ -1,44 +1,35 @@
-package components.school;
+package com.school;
 
-/**
- * A simple representation of an attendance record.
- * Stored as CSV by FileStorageService where needed.
- */
 public class AttendanceRecord implements Storable {
-    private final String studentId;
-    private final String date; // use yyyy-mm-dd
-    private final boolean present;
+    private Student student; // Changed from studentId to Student object
+    private Course course;   // Changed from courseId to Course object
+    private String status;
 
-    public AttendanceRecord(String studentId, String date, boolean present) {
-        this.studentId = studentId;
-        this.date = date;
-        this.present = present;
+    public AttendanceRecord(Student student, Course course, String status) {
+        this.student = student;
+        this.course = course;
+        if ("Present".equalsIgnoreCase(status) || "Absent".equalsIgnoreCase(status)) {
+            this.status = status;
+        } else {
+            this.status = "Invalid";
+            System.out.println("Warning: Invalid attendance status provided ('" + status + "'). Set to 'Invalid'.");
+        }
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
+    public Student getStudent() { return student; } // Getter for Student object
+    public Course getCourse() { return course; }   // Getter for Course object
+    public String getStatus() { return status; }
 
-    public String getDate() {
-        return date;
-    }
-
-    public boolean isPresent() {
-        return present;
+    public void displayRecord() {
+        // Now we can get details directly from the objects
+        System.out.println("Attendance: Student " + student.getName() + " (ID: " + student.getId() + ")" +
+                           " in Course " + course.getCourseName() + " (ID: C" + course.getCourseId() + ")" +
+                           " - Status: " + status);
     }
 
     @Override
     public String toDataString() {
-        // CSV: studentId,date,present
-        return String.join(",", studentId, date, Boolean.toString(present));
-    }
-
-    public static AttendanceRecord fromDataString(String line) {
-        if (line == null || line.trim().isEmpty()) return null;
-        String[] parts = line.split(",", -1);
-        String sid = parts.length > 0 ? parts[0] : "";
-        String date = parts.length > 1 ? parts[1] : "";
-        boolean present = parts.length > 2 && Boolean.parseBoolean(parts[2]);
-        return new AttendanceRecord(sid, date, present);
+        // Save IDs for simplicity in file storage
+        return student.getId() + "," + course.getCourseId() + "," + status;
     }
 }

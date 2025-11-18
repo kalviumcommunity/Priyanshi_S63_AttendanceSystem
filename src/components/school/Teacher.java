@@ -4,25 +4,18 @@ public class Teacher extends Person {
     private String subjectTaught;
 
     public Teacher(String name, String subjectTaught) {
-        super(name);
+        super(name); // Calls Person constructor
         this.subjectTaught = subjectTaught;
     }
 
-    public Teacher(String id, String name, String subjectTaught) {
-        super(id, name);
-        this.subjectTaught = subjectTaught;
-    }
-
+    // Getter for subjectTaught (optional for now)
     public String getSubjectTaught() {
         return subjectTaught;
     }
 
-    public void setSubjectTaught(String subjectTaught) {
-        this.subjectTaught = subjectTaught;
-    }
-
     @Override
-    public String displayDetails() {
-        return String.format("Teacher - %s, Subject: %s", super.displayDetails(), subjectTaught);
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println(", Subject: " + subjectTaught + " (Role: Teacher)");
     }
 }
