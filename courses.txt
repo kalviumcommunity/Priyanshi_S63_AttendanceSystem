@@ -1,2 +1,3 @@
-101,Intro to Quantum Physics
-102,Advanced Algorithms
+101,Advanced Mathematics
+102,Physics 101
+103,Chemistry Basics
