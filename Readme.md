@@ -113,3 +113,49 @@ java Main
 2. Compile: `javac src/components/school/*.java`
 3. Run: `java -cp src components.school.Main`
 4. Check for `students.txt`, `teachers.txt`, `staff.txt`, `courses.txt`, and `attendance_log.txt`.
+
+## Part 10: Capacity Management & SOLID Principles Reflection
+- Added a `capacity` feature to the `Course` class, along with an internal list of `enrolledStudents`.
+- Updated `Course.displayDetails()` to show capacity and enrollment count, and `Course.toDataString()` to save capacity.
+- Modified `RegistrationService`:
+    - `createCourse` method now accepts a capacity parameter.
+    - Added `enrollStudentInCourse(Student student, Course course)` method to handle enrollment logic, checking against course capacity.
+- Updated `Main.java` to demonstrate course creation with capacity, student enrollment attempts (including exceeding capacity), and displaying updated course information.
+- Implemented optional enrollment verification before marking attendance to ensure only enrolled students have their attendance tracked.
+- Successfully demonstrated capacity limits with proper success/failure messages when enrolling students.
+
+### SOLID Principles Applied Throughout the Project
+
+**1. Single Responsibility Principle (SRP)**
+   - Each class has one clear responsibility: `Student`, `Teacher`, and `Staff` manage person data; `Course` manages course data and enrollment; `RegistrationService` handles entity registration; `AttendanceService` manages attendance records; `FileStorageService` handles file I/O.
+
+**2. Open/Closed Principle (OCP)**
+   - The `Storable` interface allows new storable types to be added without modifying `FileStorageService`.
+   - Inheritance hierarchy (`Person` → `Student`/`Teacher`/`Staff`) allows extension without modification.
+
+**3. Liskov Substitution Principle (LSP)**
+   - Any `Person` subclass (`Student`, `Teacher`, `Staff`) can be used interchangeably in collections and methods expecting `Person`.
+   - All subclasses properly override `displayDetails()` while maintaining expected behavior.
+
+**4. Interface Segregation Principle (ISP)**
+   - `Storable` interface is focused and minimal, requiring only `toDataString()` method.
+   - Classes only implement interfaces relevant to their functionality.
+
+**5. Dependency Inversion Principle (DIP)**
+   - `RegistrationService` and `AttendanceService` depend on abstractions (interfaces) rather than concrete implementations.
+   - Dependencies are injected through constructors, making the code flexible and testable.
+
+### How to Run
+1. Navigate to the project root directory.
+2. Compile: `javac src/components/school/*.java`
+3. Run: `java -cp src components.school.Main`
+4. Check `courses.txt` for the capacity field and other files for their respective data.
+
+### Project Completion
+This concludes the 10-part School Attendance System project. The system demonstrates:
+- Object-oriented design principles
+- Proper encapsulation and abstraction
+- Service layer architecture with dependency injection
+- File-based persistence
+- Console-based user interaction
+- Capacity management and enrollment validation

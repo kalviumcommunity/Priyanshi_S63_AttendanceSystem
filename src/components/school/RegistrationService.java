@@ -46,10 +46,10 @@ public class RegistrationService {
     }
 
     // Create a course
-    public void createCourse(String courseName) {
-        Course course = new Course(courseName);
+    public void createCourse(String courseName, int capacity) {
+        Course course = new Course(courseName, capacity);
         courses.add(course);
-        System.out.println("Created course: " + courseName + " with ID: C" + course.getCourseId());
+        System.out.println("Created course: " + courseName + " with ID: C" + course.getCourseId() + " (Capacity: " + capacity + ")");
     }
 
     // Getters for lists
@@ -87,6 +87,22 @@ public class RegistrationService {
             }
         }
         return null;
+    }
+
+    // Enroll a student in a course
+    public boolean enrollStudentInCourse(Student student, Course course) {
+        if (student == null || course == null) {
+            System.out.println("Error: Student or Course cannot be null.");
+            return false;
+        }
+        
+        boolean success = course.addStudent(student);
+        if (success) {
+            System.out.println("Successfully enrolled " + student.getName() + " in " + course.getCourseName());
+        } else {
+            System.out.println("Failed to enroll " + student.getName() + " in " + course.getCourseName() + " - Course is full!");
+        }
+        return success;
     }
 
     // Get all people (students, teachers, and staff combined)
